@@ -1,3 +1,7 @@
-//export const API_ROUTE = 'https://chatsql.huguestradecenter.com/'
-export const API_ROUTE = 'http://localhost:3000/'
+// config.tsx
 
+const config = {
+  backendUrl: 'https://eali-nestjs-backend.onrender.com/', // production backend URL
+};
+
+export default config;
