@@ -1,1 +1,1 @@
-# ChatSQL-ui
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/ai-git-aly/eali_react_frontend?utm_source=oss&utm_medium=github&utm_campaign=ai-git-aly%2Feali_react_frontend&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
