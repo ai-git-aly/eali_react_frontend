@@ -1,0 +1,51 @@
+# Project Summary & Developer Guide
+
+## Overview
+This project consists of a **NestJS Backend** (`backend-eali`) and a **React Frontend** (`react_app`). It manages a university/organization website with features like News, Tenders, Partnerships, Programs, and a Contact form.
+
+## Backend (`backend-eali`)
+Built with NestJS, TypeORM, and PostgreSQL (`eali_db`).
+
+### Key Directories & Files
+- **[src/app.module.ts](file:///c:/Users/Ally/Desktop/PROGRAMATION-PROJECTS/PythonProject/react_app/backend-eali/src/app.module.ts)**: The root module. Configures the database connection, static file serving (for uploads), and imports all feature modules. **Edit this to change DB credentials or add new modules.**
+- **[src/main.ts](file:///c:/Users/Ally/Desktop/PROGRAMATION-PROJECTS/PythonProject/react_app/backend-eali/src/main.ts)**: The entry point. Configures CORS and the port (default: 3000).
+- **`src/modules/`**: Contains feature-specific logic.
+    - **`auth/`**: Handles Login/Register.
+        - [auth.service.ts](file:///c:/Users/Ally/Desktop/PROGRAMATION-PROJECTS/PythonProject/react_app/backend-eali/src/modules/auth/auth.service.ts): Logic for validating users and generating JWTs.
+        - [auth.controller.ts](file:///c:/Users/Ally/Desktop/PROGRAMATION-PROJECTS/PythonProject/react_app/backend-eali/src/modules/auth/auth.controller.ts): Endpoints like `/auth/login` and `/auth/register`.
+        - [jwt.strategy.ts](file:///c:/Users/Ally/Desktop/PROGRAMATION-PROJECTS/PythonProject/react_app/backend-eali/src/modules/auth/jwt.strategy.ts): Validates the JWT token for protected routes.
+    - **`news/`**: Manages News articles.
+        - [news.controller.ts](file:///c:/Users/Ally/Desktop/PROGRAMATION-PROJECTS/PythonProject/react_app/backend-eali/src/modules/news/news.controller.ts): Handles image uploads and CRUD operations. **Edit this to change upload logic.**
+        - [news.entity.ts](file:///c:/Users/Ally/Desktop/PROGRAMATION-PROJECTS/PythonProject/react_app/backend-eali/src/modules/news/news.entity.ts): Defines the [News](file:///c:/Users/Ally/Desktop/PROGRAMATION-PROJECTS/PythonProject/react_app/backend-eali/src/modules/news/news.controller.ts#9-67) database table structure.
+    - **`messages/`**: **(New)** Handles "Contact Us" form submissions.
+        - [messages.controller.ts](file:///c:/Users/Ally/Desktop/PROGRAMATION-PROJECTS/PythonProject/react_app/backend-eali/src/modules/messages/messages.controller.ts): Endpoint `/messages`.
+        - [message.entity.ts](file:///c:/Users/Ally/Desktop/PROGRAMATION-PROJECTS/PythonProject/react_app/backend-eali/src/modules/messages/message.entity.ts): Defines the [Message](file:///c:/Users/Ally/Desktop/PROGRAMATION-PROJECTS/PythonProject/react_app/backend-eali/src/modules/messages/message.entity.ts#3-23) table.
+    - **`tenders/`, `partners/`, `programs/`**: Similar structure for other features.
+
+### How it Works
+1.  **Database**: Connects to PostgreSQL. Tables are automatically created/updated (`synchronize: true` in [app.module.ts](file:///c:/Users/Ally/Desktop/PROGRAMATION-PROJECTS/PythonProject/react_app/backend-eali/src/app.module.ts)).
+2.  **Authentication**: Users register/login to get a JWT token. This token is required for Admin operations (creating news, viewing messages).
+3.  **File Uploads**: Images/PDFs are uploaded to the `uploads/` folder and served statically at `http://localhost:3000/uploads/filename`.
+
+## Frontend (`react_app`)
+Built with React, TypeScript, and Tailwind CSS.
+
+### Key Directories & Files
+- **[src/App.tsx](file:///c:/Users/Ally/Desktop/PROGRAMATION-PROJECTS/PythonProject/react_app/src/App.tsx)**: Main routing configuration. Defines which component shows for which URL.
+- **`src/components/`**: Reusable UI parts (Header, Footer, etc.).
+- **`src/pages/`**: Full pages (Home, News, Contact, Admin).
+- **`src/context/AuthContext.tsx`**: Manages the logged-in user's state.
+- **`src/api/`**: (If present) Centralized API calls.
+
+### How to Edit
+- **To Change Content**: Edit the relevant page in `src/pages/`.
+- **To Change Styles**: Edit Tailwind classes in the components or `src/index.css`.
+- **To Add a Feature**:
+    1.  Create the backend module (Controller, Service, Entity).
+    2.  Register it in `app.module.ts`.
+    3.  Create the frontend page/component to interact with the new API.
+
+## Common Tasks
+- **Run Backend**: `cd backend-eali` -> `npm run start`
+- **Run Frontend**: `cd react_app` -> `npm run dev`
+- **Database Access**: Use `pgAdmin` or `psql` to view `eali_db`.
