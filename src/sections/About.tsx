@@ -16,7 +16,7 @@ const About: React.FC = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                    <RevealOnScroll direction="right" className="relative sticky top-24">
+                    <RevealOnScroll direction="right" className="relative lg:sticky lg:top-24 order-2 lg:order-1">
                         <div className="absolute -inset-4 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-2xl blur-lg opacity-20"></div>
                         <div className="relative bg-white border border-brand-primary/10 p-8 rounded-2xl h-full flex flex-col justify-center shadow-xl">
                             <h3 className="text-2xl font-bold text-brand-primary mb-4">{t('our_history')}</h3>
@@ -49,7 +49,7 @@ const About: React.FC = () => {
                             </div>
                         </div>
                     </RevealOnScroll>
-                    <RevealOnScroll direction="left" delay={0.2}>
+                    <RevealOnScroll direction="left" delay={0.2} className="order-1 lg:order-2">
                         <h2 className="text-sm font-semibold text-brand-secondary tracking-widest uppercase mb-2">{t('about')}</h2>
                         <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">{t('welcome_to_eali')}</h3>
 
