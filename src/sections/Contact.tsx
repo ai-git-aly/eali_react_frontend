@@ -137,6 +137,27 @@ const Contact: React.FC = () => {
                         </form>
                     </RevealOnScroll>
                 </div>
+
+                {/* Google Maps Section */}
+                <RevealOnScroll direction="up" className="mt-16">
+                    <h4 className="text-xl font-bold text-slate-900 mb-6 text-center">{t('our_location') || 'Our Location'}</h4>
+                    <div className="rounded-2xl overflow-hidden shadow-xl border border-slate-200">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63738.41!2d30.25!3d-2.9333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19c147a09b4d8f35%3A0xdeeaa1bb18764c93!2sMuyinga%2C%20Burundi!5e0!3m2!1sen!2sus!4v1706434400000!5m2!1sen!2sus"
+                            width="100%"
+                            height="400"
+                            style={{ border: 0 }}
+                            allowFullScreen
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            title="EALI Location - Muyinga-Kibogoye, B.P 60 Muyinga, Burundi"
+                            className="w-full"
+                        />
+                    </div>
+                    <p className="text-center text-slate-600 mt-4">
+                        <span className="font-medium">EALI</span> - Muyinga-Kibogoye, B.P 60 Muyinga, Burundi
+                    </p>
+                </RevealOnScroll>
             </div>
         </div>
     );
