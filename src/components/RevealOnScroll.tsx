@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 interface Props {
     children: React.ReactNode;
@@ -16,6 +16,7 @@ export const RevealOnScroll: React.FC<Props> = ({
     direction = 'up',
     onClick
 }) => {
+    const shouldReduceMotion = useReducedMotion();
     const getInitial = () => {
         switch (direction) {
             case 'up': return { opacity: 0, y: 50 };
@@ -38,10 +39,10 @@ export const RevealOnScroll: React.FC<Props> = ({
 
     return (
         <motion.div
-            initial={getInitial()}
-            whileInView={getAnimate()}
+            initial={shouldReduceMotion ? { opacity: 0 } : getInitial()}
+            whileInView={shouldReduceMotion ? { opacity: 1 } : getAnimate()}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: delay, ease: "easeOut" }}
+            transition={{ duration: shouldReduceMotion ? 0.1 : 0.6, delay: delay, ease: "easeOut" }}
             className={className}
             onClick={onClick}
         >
