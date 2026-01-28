@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ArrowRight, CheckCircle2, BookOpen, Briefcase, Cpu, Globe, Sprout, Wifi, LucideIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import RevealOnScroll from '../components/RevealOnScroll';
+import ProgramDetailsModal, { ProgramDetails } from '../components/ProgramDetailsModal';
 import api, { Faculty, ProfessionalCourse } from '../services/api';
 
 const iconMap: Record<string, LucideIcon> = {
@@ -22,6 +23,8 @@ const Programs: React.FC = () => {
     const [faculties, setFaculties] = useState<Faculty[]>([]);
     const [courses, setCourses] = useState<ProfessionalCourse[]>([]);
     const [loading, setLoading] = useState(true);
+    const [selectedProgram, setSelectedProgram] = useState<ProgramDetails | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         const fetchPrograms = async () => {
@@ -42,6 +45,21 @@ const Programs: React.FC = () => {
         };
         fetchPrograms();
     }, []);
+
+    const handleLearnMore = async (programId: number) => {
+        try {
+            const response = await api.get(`/programs/${programId}`);
+            setSelectedProgram(response.data);
+            setIsModalOpen(true);
+        } catch (error) {
+            console.error('Failed to fetch program details:', error);
+        }
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedProgram(null);
+    };
 
     return (
         <div id="programs" className="py-24 bg-slate-50 relative overflow-hidden">
@@ -93,7 +111,10 @@ const Programs: React.FC = () => {
                                                 </div>
 
                                                 <div className="mt-auto pt-6 border-t border-slate-100 flex justify-end items-center">
-                                                    <button className="text-brand-secondary text-sm font-medium flex items-center gap-1 hover:gap-2 transition-all duration-300">
+                                                    <button
+                                                        onClick={() => handleLearnMore(faculty.id)}
+                                                        className="text-brand-secondary text-sm font-medium flex items-center gap-1 hover:gap-2 transition-all duration-300"
+                                                    >
                                                         {t('learn_more')} <ArrowRight className="w-4 h-4" />
                                                     </button>
                                                 </div>
@@ -125,7 +146,10 @@ const Programs: React.FC = () => {
                                                 </h3>
 
                                                 <div className="mt-auto pt-4 border-t border-slate-100 flex justify-end items-center">
-                                                    <button className="text-brand-primary text-sm font-medium flex items-center gap-1 hover:gap-2 transition-all duration-300">
+                                                    <button
+                                                        onClick={() => handleLearnMore(course.id)}
+                                                        className="text-brand-primary text-sm font-medium flex items-center gap-1 hover:gap-2 transition-all duration-300"
+                                                    >
                                                         {t('learn_more')} <ArrowRight className="w-4 h-4" />
                                                     </button>
                                                 </div>
@@ -138,8 +162,16 @@ const Programs: React.FC = () => {
                     </div>
                 )}
             </div>
+
+            {/* Program Details Modal */}
+            <ProgramDetailsModal
+                program={selectedProgram}
+                isOpen={isModalOpen}
+                onClose={closeModal}
+            />
         </div>
     );
 };
 
 export default Programs;
+
