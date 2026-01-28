@@ -101,6 +101,13 @@
     "download": "Download",
     "close": "Close",
     "our_location": "Our Location",
+    "program_details": "Program Details",
+    "duration": "Duration",
+    "degree_awarded": "Degree Awarded",
+    "admission_requirements": "Admission Requirements",
+    "career_opportunities": "Career Opportunities",
+    "specializations": "Specializations",
+    "apply_for_program": "Apply for This Program",
     "auth": {
         "login": "Login",
         "logout": "Logout",

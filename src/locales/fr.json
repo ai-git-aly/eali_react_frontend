@@ -101,6 +101,13 @@
     "download": "Télécharger",
     "close": "Fermer",
     "our_location": "Notre Emplacement",
+    "program_details": "Détails du Programme",
+    "duration": "Durée",
+    "degree_awarded": "Diplôme Délivré",
+    "admission_requirements": "Conditions d'Admission",
+    "career_opportunities": "Opportunités de Carrière",
+    "specializations": "Spécialisations",
+    "apply_for_program": "Postuler pour ce Programme",
     "auth": {
         "login": "Connexion",
         "logout": "Déconnexion",
