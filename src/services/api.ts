@@ -48,8 +48,28 @@ export interface ProfessionalCourse {
     icon: string;
 }
 
+export interface Message {
+    id: number;
+    name: string;
+    email: string;
+    subject: string;
+    content: string;
+    created_at: string;
+    replied: boolean;
+    reply_content?: string;
+}
+
+export interface FAQ {
+    id: number;
+    question_en: string;
+    question_fr: string;
+    answer_en: string;
+    answer_fr: string;
+    order: number;
+}
+
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'https://eali-nestjs-backend.onrender.com/api',
+    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
 });
 
 api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
@@ -61,4 +81,3 @@ api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 });
 
 export default api;
-
