@@ -14,6 +14,8 @@ import NewsManager from './pages/admin/NewsManager';
 import TendersManager from './pages/admin/TendersManager';
 import PartnersManager from './pages/admin/PartnersManager';
 import ProgramsManager from './pages/admin/ProgramsManager';
+import MessagesManager from './pages/admin/MessagesManager';
+import FAQManager from './pages/admin/FAQManager';
 
 // Page transition variants
 const pageVariants = {
@@ -72,6 +74,8 @@ const App: React.FC = () => {
               <Route path="tenders" element={<TendersManager />} />
               <Route path="partners" element={<PartnersManager />} />
               <Route path="programs" element={<ProgramsManager />} />
+              <Route path="messages" element={<MessagesManager />} />
+              <Route path="faqs" element={<FAQManager />} />
             </Route>
           </Routes>
         </AnimatePresence>
