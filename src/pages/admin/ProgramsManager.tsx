@@ -101,8 +101,9 @@ const ProgramsManager: React.FC = () => {
             resetFormData();
             setShowAdvanced(false);
             fetchPrograms();
-        } catch (err) {
-            alert('Failed to save program');
+        } catch (err: any) {
+            console.error('Failed to save program', err);
+            alert(err.response?.data?.message || 'Failed to save program');
         }
     };
 

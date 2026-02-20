@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Newspaper, FileText, Users, BookOpen, LogOut } from 'lucide-react';
+import { LayoutDashboard, Newspaper, FileText, Users, BookOpen, Mail, HelpCircle, LogOut } from 'lucide-react';
 
 const AdminLayout: React.FC = () => {
     const navigate = useNavigate();
@@ -10,8 +10,10 @@ const AdminLayout: React.FC = () => {
         navigate('/admin/login');
     };
 
-    const menuItems = [
+const menuItems = [
         { icon: LayoutDashboard, label: 'Dashboard', path: '/admin/dashboard' },
+        { icon: Mail, label: 'Messages', path: '/admin/messages' },
+        { icon: HelpCircle, label: 'Q&A', path: '/admin/faqs' },
         { icon: Newspaper, label: 'News', path: '/admin/news' },
         { icon: FileText, label: 'Tenders', path: '/admin/tenders' },
         { icon: Users, label: 'Partners', path: '/admin/partners' },

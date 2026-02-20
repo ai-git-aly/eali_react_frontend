@@ -57,8 +57,9 @@ const PartnersManager: React.FC = () => {
                 type: 'national',
             });
             fetchPartners();
-        } catch (err) {
-            alert('Failed to save partner');
+        } catch (err: any) {
+            console.error('Failed to save partner', err);
+            alert(err.response?.data?.message || 'Failed to save partner');
         }
     };
 
