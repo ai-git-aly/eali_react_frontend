@@ -28,7 +28,7 @@ const MessagesManager: React.FC = () => {
         if (!selectedMessage || !replyContent.trim()) return;
         setIsReplying(true);
         try {
-            await api.post(`/messages/${selectedMessage.id}/reply`, {
+            await api.patch(`/messages/${selectedMessage.id}/reply`, {
                 reply_content: replyContent
             });
             setSelectedMessage(null);
@@ -91,7 +91,7 @@ const MessagesManager: React.FC = () => {
                                         )}
                                     </div>
                                     <div className="text-sm text-gray-600 truncate">{message.subject}</div>
-                                    <div className="text-xs text-gray-400 mt-1">{formatDate(message.created_at)}</div>
+                                    <div className="text-xs text-gray-400 mt-1">{formatDate(message.createdAt || message.created_at || '')}</div>
                                 </div>
                             ))
                         )}
@@ -131,7 +131,7 @@ const MessagesManager: React.FC = () => {
                                 </div>
                                 <div className="mb-4">
                                     <label className="text-xs text-gray-500 uppercase">Date</label>
-                                    <div className="mt-1 text-gray-600">{formatDate(selectedMessage.created_at)}</div>
+                                    <div className="mt-1 text-gray-600">{formatDate(selectedMessage.createdAt || selectedMessage.created_at || '')}</div>
                                 </div>
 
                                 {/* Reply Section */}
