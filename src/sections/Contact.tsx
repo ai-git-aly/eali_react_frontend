@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import RevealOnScroll from '../components/RevealOnScroll';
+import api from '../services/api';
 
 const Contact: React.FC = () => {
     const { t } = useTranslation();
@@ -11,12 +12,26 @@ const Contact: React.FC = () => {
         subject: '',
         message: ''
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
-        alert('Message sent! (This is a demo)');
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setIsSubmitting(true);
+        try {
+            await api.post('/messages', {
+                name: formData.name,
+                email: formData.email,
+                subject: formData.subject,
+                content: formData.message
+            });
+            alert('Message sent successfully!');
+            setFormData({ name: '', email: '', subject: '', message: '' });
+        } catch (err) {
+            console.error('Failed to send message', err);
+            alert('Failed to send message. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -130,9 +145,10 @@ const Contact: React.FC = () => {
                             </div>
                             <button
                                 type="submit"
-                                className="w-full bg-gradient-to-r from-brand-primary to-brand-dark hover:from-brand-dark hover:to-brand-primary text-white font-bold py-4 rounded-xl transition-all duration-500 shadow-lg shadow-brand-primary/20 flex items-center justify-center gap-2 group"
+                                disabled={isSubmitting}
+                                className="w-full bg-gradient-to-r from-brand-primary to-brand-dark hover:from-brand-dark hover:to-brand-primary text-white font-bold py-4 rounded-xl transition-all duration-500 shadow-lg shadow-brand-primary/20 flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                {t('submit')} <Send className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                {isSubmitting ? 'Sending...' : t('submit')} <Send className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                             </button>
                         </form>
                     </RevealOnScroll>
