@@ -54,9 +54,10 @@ export interface Message {
     email: string;
     subject: string;
     content: string;
-    created_at: string;
+    createdAt?: string;
+    created_at?: string;
     replied: boolean;
-    reply_content?: string;
+    reply_content?: string | null;
 }
 
 export interface FAQ {
