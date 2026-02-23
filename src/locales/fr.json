@@ -125,6 +125,13 @@
         "register_link": "Inscrivez-vous ici",
         "have_account": "Vous avez déjà un compte ?",
         "login_link": "Connectez-vous ici",
-        "register_success": "Inscription réussie ! Redirection..."
-    }
+"register_success": "Inscription réussie ! Redirection..."
+    },
+    "faq": "Q&R",
+    "faq_title": "Questions Fréquemment Posées",
+    "faq_subtitle": "Trouvez les réponses aux questions les plus fréquentes sur EALI",
+    "no_faqs": "Aucune FAQ Disponible",
+    "no_faqs_message": "Revenez plus tard pour les questions fréquemment posées.",
+    "faq_contact_title": "Vous avez encore des questions ?",
+    "faq_contact_message": "Vous ne trouvez pas la réponse à votre question ? Contactez-nous."
 }
