@@ -30,6 +30,7 @@ const Navbar: React.FC = () => {
     { label: t('partnerships'), href: "/#partnerships" },
     { label: t('news'), href: "/#news" },
     { label: t('tenders') || "Appel d'offre", href: "/#tenders" },
+    { label: t('faq') || "Q&R", href: "/faq" },
     { label: t('contact'), href: "/#contact" },
   ];
 
