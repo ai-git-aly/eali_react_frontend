@@ -16,6 +16,7 @@ import PartnersManager from './pages/admin/PartnersManager';
 import ProgramsManager from './pages/admin/ProgramsManager';
 import MessagesManager from './pages/admin/MessagesManager';
 import FAQManager from './pages/admin/FAQManager';
+import FAQPage from './pages/FAQ';
 
 // Page transition variants
 const pageVariants = {
@@ -63,6 +64,7 @@ const App: React.FC = () => {
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<AnimatedPage><Home /></AnimatedPage>} />
+            <Route path="/faq" element={<AnimatedPage><FAQPage /></AnimatedPage>} />
             <Route path="/login" element={<AnimatedPage><Login /></AnimatedPage>} />
             <Route path="/register" element={<AnimatedPage><Register /></AnimatedPage>} />
 
