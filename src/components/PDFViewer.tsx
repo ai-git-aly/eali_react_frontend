@@ -13,7 +13,7 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ url, onClose }) => {
 
     // Handle URL - ensure it's properly formatted for web access
     const getFullUrl = () => {
-        if (!url) return '';
+        if (!url || url === 'undefined' || url === 'null') return '';
 
         // If it's a local file path, we can't load it in the browser
         if (isLocalFilePath) {
